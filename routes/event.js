@@ -3,7 +3,6 @@ const router = express.Router()
 const path = require('path')
 const Event = require('../models/Event')
 const Utils = require('../utils')
-const { time } = require('console')
 
 // GET - get all events
 router.get('/', Utils.authenticateToken, (req, res) => {

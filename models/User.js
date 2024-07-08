@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const Utils = require('./../utils');
 require('mongoose-type-email');
 
 // USER = ADMIN IN THIS CASE, as only the users with the role 'admin' can access the admin panel

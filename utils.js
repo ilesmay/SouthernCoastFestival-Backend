@@ -4,16 +4,14 @@ let crypto = require('crypto');
 const { v4: uuidv4 } = require('uuid')
 const path = require('path')
 
-// Admin login/password security
 class Utils {
-    // hash password using crypto module 
+
     hashPassword(password){
         const salt = crypto.randomBytes(16).toString('hex');
         const hash = crypto.pbkdf2Sync(password, salt, 2048, 32, 'sha512').toString('hex');
         return [salt, hash].join('$');
     }
 
-    // verify password using crypto module
     verifyHash(password, original){
         const originalHash = original.split('$')[1];
         const salt = original.split('$')[0];
@@ -21,12 +19,10 @@ class Utils {
         return hash === originalHash;
     }
 
-    // generate access token using jwt
     generateAccessToken(user){
         return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d'})
     }
 
-    // authenticate token using jwt
     authenticateToken(req, res, next){
         const authHeader = req.headers['authorization']        
         const token = authHeader && authHeader.split(' ')[1]
@@ -36,7 +32,6 @@ class Utils {
             })
         } 
         
-        // verify token
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
             if(err) {
                 return res.status(401).json({
@@ -47,8 +42,6 @@ class Utils {
             next()
         })
     }
-
-    // upload file/event to server
 
     uploadFile(file, uploadPath, callback){        
         // get file extension (.jpg, .png etc)
