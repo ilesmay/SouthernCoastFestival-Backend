@@ -9,6 +9,7 @@ class Utils {
     hashPassword(password){
         const salt = crypto.randomBytes(16).toString('hex');
         const hash = crypto.pbkdf2Sync(password, salt, 2048, 32, 'sha512').toString('hex');
+        console.log('hello world')
         return [salt, hash].join('$');
     }
 
