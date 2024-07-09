@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 
 // USER = ADMIN IN THIS CASE, as only the users with the role 'admin' can access the admin panel
 
-// GET /signIn ---------------------------------------
+// POST /signIn ---------------------------------------
 router.post('/signin', (req, res) => {
   // 1. check if email and passwore are empty
   if( !req.body.email || !req.body.password ){     
@@ -22,8 +22,8 @@ router.post('/signin', (req, res) => {
      // user exists, now check password
      if( Utils.verifyHash(req.body.password, user.password) ){
         // Check if the user is an admin
-        if(user.role !== 'admin') {
-        return res.status(403).json({message: 'Access denied'});
+        if(user.accessLevel !== 'admin') {
+          return res.status(403).json({message: 'Access denied'});
         }
         // Proceed to generate JWT token for the admin
         let payload = {
