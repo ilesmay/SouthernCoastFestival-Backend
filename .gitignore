@@ -1,1 +1,4 @@
 node_modules
+createAdminUser.js
+hashingAndVerification.js
+verifyPassword.js

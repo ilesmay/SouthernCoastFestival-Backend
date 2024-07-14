@@ -39,8 +39,8 @@ const userRouter = require('./routes/user');
 app.use('/user', userRouter);
 
 //  event routes  
-const storyRouter = require('./routes/event');
-app.use('/events', storyRouter);
+const eventRouter = require('./routes/events');
+app.use('/events', eventRouter);
 
 // Run app listen on port
 app.listen(port, () => {
