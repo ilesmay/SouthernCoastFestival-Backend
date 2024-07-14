@@ -21,7 +21,7 @@ router.put('/addFav/', Utils.authenticateToken, async (req, res) => {
     _id: req.user._id 
   }, {
       $push: {
-        favouriteEvents: req.body.Id
+        favourites: req.body.Id
       }
     }
   )
@@ -46,7 +46,7 @@ router.get('/:id', Utils.authenticateToken, (req, res) => {
     })
   }
 
-  User.findById(req.params.id).populate('favouriteEvents')
+  User.findById(req.params.id).populate('favourites')
     .then(user => {
       res.json(user)
     })
