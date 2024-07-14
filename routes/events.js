@@ -1,7 +1,8 @@
+require('dotenv').config();
 const express = require('express')
 const router = express.Router()
 const path = require('path')
-const Event = require('../models/Event')
+const Event = require('../models/Events')
 const Utils = require('../utils')
 
 // GET - get all events
@@ -28,29 +29,21 @@ router.get('/', Utils.authenticateToken, (req, res) => {
 router.post('/', Utils.authenticateToken, (req, res) => {
 
   // validate
-  if (Object.keys(req.body).length === 0) {
-    return res.status(400).send({ message: "Event content can't be empty" })
-  }
 
-  if (!req.files || !req.files.image) {
-    return res.status(400).send({ message: "Image can't be empty" })
-  }
-
-  const imageFile = req.files.image
-  const uploadPath = path.join(__dirname, '..', 'public', 'images')
-
-  Utils.uploadFile(imageFile, uploadPath, (uniqueFilename) => {
-    if (!uniqueFilename) {
-      return res.status(500).send({ message: "Problem uploading image" })
-    }
 
     // create new Event
     let newEvent = new Event({
-      name: req.body.name,
-      description: req.body.description,
-      image: uniqueFilename,
-      length: req.body.length,
-      artist: req.body.author,
+      eventdisplayname: req.body.eventdisplayname,
+      vendorcontactname: req.body.vendorcontactname,
+      vendorcontactemail: req.body.vendorcontactemail,
+      vendorcontactphone: req.body.vendorcontactphone,
+      eventcategory: req.body.eventcategory,
+      eventtag: req.body.eventtag,
+      eventoperationdatetimestart: req.body.eventoperationdatetimestart,
+      eventoperationdatetimeend: req.body.eventoperationdatetimeend,
+      eventstallnumber: req.body.eventstallnumber,
+      eventdescription: req.body.eventdescription,
+      eventimage: req.body.eventimage,
     })
 
     newEvent.save()
@@ -65,7 +58,6 @@ router.post('/', Utils.authenticateToken, (req, res) => {
         })
       })
   })
-})
-
+  
 // export
 module.exports = router
