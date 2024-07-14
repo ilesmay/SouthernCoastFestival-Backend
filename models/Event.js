@@ -1,27 +1,52 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const Utils = require('../utils')
+const Utils = require('./../utils')
 
 const eventSchema = new mongoose.Schema({
-  name: {
+  eventdisplayname: {
     type: String,
     required: true
   },
-  description: {
+  vendorcontactname: {
     type: String,
     required: true
   },
-  image: {
+  vendorcontactemail: {
     type: String,
     required: true
   },
-  length: {
+  vendorcontactphone: {
     type: String,
     required: true
   },
-  artist: {
+  eventcategory: {
     type: String,
     required: true
+  },
+  eventtag: {
+    type: String,
+    required: true
+  },
+  eventoperationdatetime: {
+    type: String,
+    required: true
+  },
+  eventstallnumber: {
+    type: String,
+    required: true
+  },
+  eventdescription: {
+    type: String,
+    required: true
+  },
+  eventimage: {
+    type: String,
+    required: true
+  },
+  authoredBy: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'User'   
   }
   //Add more fields as needed
 }, { timestamps: true })
