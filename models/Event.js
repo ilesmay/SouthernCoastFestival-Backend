@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const Utils = require('./../utils')
+require('mongoose-type-email');
 
 const eventSchema = new mongoose.Schema({
   eventdisplayname: {
@@ -12,8 +13,8 @@ const eventSchema = new mongoose.Schema({
     required: true
   },
   vendorcontactemail: {
-    type: String,
-    required: true
+    type: mongoose.SchemaTypes.Email,
+    required: true   
   },
   vendorcontactphone: {
     type: String,
@@ -27,8 +28,12 @@ const eventSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  eventoperationdatetime: {
-    type: String,
+  eventoperationdatetimestart: {
+    type: Date,
+    required: true
+  },
+  eventoperationdatetimeend: {
+    type: Date,
     required: true
   },
   eventstallnumber: {
@@ -42,15 +47,10 @@ const eventSchema = new mongoose.Schema({
   eventimage: {
     type: String,
     required: true
-  },
-  authoredBy: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'User'   
   }
   //Add more fields as needed
 }, { timestamps: true })
 
-const event = mongoose.model('event', eventSchema)
+const eventModel = mongoose.model('Event', eventSchema)
 
-module.exports = event
+module.exports = eventModel 
