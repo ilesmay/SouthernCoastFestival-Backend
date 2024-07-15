@@ -5,45 +5,46 @@ const Utils = require('../utils')
 require('mongoose-type-email');
 
 const eventSchema = new mongoose.Schema({
+  user: { type: Schema.Types.ObjectId, ref: 'User' }, // Assuming 'User' is the name of the collection you're referencing
   eventdisplayname: {
     type: String,
-    required: true
+    required: false
   },
   vendorcontactname: {
     type: String,
-    required: true
+    required: false
   },
   vendorcontactemail: {
     type: mongoose.SchemaTypes.Email,
-    required: true   
+    required: false   
   },
   vendorcontactphone: {
     type: String,
-    required: true
+    required: false
   },
   eventcategory: {
     type: String,
-    required: true
+    required: false
   },
   eventtag: {
     type: String,
-    required: true
+    required: false
   },
   eventoperationdatetimestart: {
     type: Date,
-    required: true
+    required: false
   },
   eventoperationdatetimeend: {
     type: Date,
-    required: true
+    required: false
   },
   eventstallnumber: {
     type: String,
-    required: true
+    required: false
   },
   eventdescription: {
     type: String,
-    required: true
+    required: false
   },
   eventimage: {
     type: String,

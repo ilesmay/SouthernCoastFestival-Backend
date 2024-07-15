@@ -42,7 +42,12 @@ app.use('/user', userRouter);
 const eventRouter = require('./routes/events');
 app.use('/events', eventRouter);
 
+const publicRoutes = require('./routes/publicRoutes'); // Adjust the path as necessary
+app.use('/public', publicRoutes); // Prefix all routes with /api/public
+
 // Run app listen on port
 app.listen(port, () => {
   console.log("App running on port ", port);
+
+  
 });

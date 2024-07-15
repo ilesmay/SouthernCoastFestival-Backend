@@ -13,8 +13,7 @@ const userSchema = new mongoose.Schema({
     required: true    
   },
   password: {
-    type: String,
-    required: true
+    type: String
   },
   accessLevel: {
     type: String, // Changed from Number to String
@@ -22,9 +21,8 @@ const userSchema = new mongoose.Schema({
     default: 'admin' // Assuming 'admin' will be the default value THIS IS A GUESS
   },
   favourites: {
-    type: String, // Changed from Number to String
-    required: true
-  },
+    type: String // Changed from Number to String
+     },
 }, { timestamps: true })
 
 // encrypt password field on save
