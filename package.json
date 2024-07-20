@@ -21,5 +21,8 @@
     "mongoose": "^8.4.3",
     "mongoose-type-email": "^1.1.2",
     "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
