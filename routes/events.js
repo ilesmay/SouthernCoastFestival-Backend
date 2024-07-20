@@ -7,7 +7,7 @@ const Utils = require('../utils')
 
 // GET - get all events
 router.get('/', (req, res) => {
-  Event.find().populate('user', '_id firstName lastName')
+  Event.find().populate()
     .then(events => {
       if (!events.length) {
         return res.status(404).json({
