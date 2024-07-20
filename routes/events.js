@@ -6,7 +6,7 @@ const Event = require('../models/Events')
 const Utils = require('../utils')
 
 // GET - get all events
-router.get('/', Utils.authenticateToken, (req, res) => {
+router.get('/', (req, res) => {
   Event.find().populate('user', '_id firstName lastName')
     .then(events => {
       if (!events.length) {
